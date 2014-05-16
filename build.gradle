@@ -1,0 +1,16 @@
+apply plugin: 'eclipse'
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.0'
+    compile 'org.scoverage:scalac-scoverage-plugin_2.11:0.99.2'
+}
+
+dependencies {
+    compile 'commons-collections:commons-collections:3.2'
+    testCompile 'junit:junit:4.11'
+}
