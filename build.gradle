@@ -2,15 +2,29 @@ apply plugin: 'eclipse'
 apply plugin: 'scala'
 
 repositories {
-    mavenCentral()
+   mavenCentral()
+}
+
+buildscript {
+   
+   repositories {
+      mavenCentral()
+      maven { url "https://oss.sonatype.org/content/groups/public" }
+   }
+
+   dependencies {
+      classpath 'org.scoverage:gradle-scoverage:0.4.1-SNAPSHOT'
+   }
+}
+
+apply plugin: org.scoverage.ScoveragePlugin
+
+dependencies {
+   scoverage 'org.scoverage:scalac-scoverage-plugin_2.11:0.99.5'
+   compile 'org.scala-lang:scala-library:2.11.0'
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.0'
-    compile 'org.scoverage:scalac-scoverage-plugin_2.11:0.99.2'
-}
-
-dependencies {
-    compile 'commons-collections:commons-collections:3.2'
-    testCompile 'junit:junit:4.11'
+   compile 'commons-collections:commons-collections:3.2'
+   testCompile 'junit:junit:4.11'
 }
