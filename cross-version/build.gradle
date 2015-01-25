@@ -1,0 +1,35 @@
+buildscript {
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath 'org.scoverage:gradle-scoverage:1.0.6'
+   }
+}
+
+// experimental use of an extension to provide version information
+extensions.create('scala', my.ScalaExtension, project)
+
+apply plugin: 'scala'
+apply plugin: 'scoverage'
+
+repositories {
+   mavenCentral()
+}
+
+
+dependencies {
+  scoverage "org.scoverage:scalac-scoverage-plugin_${scala.binaryVersion}:1.0.4", "org.scoverage:scalac-scoverage-runtime_${scala.binaryVersion}:1.0.4"
+   compile 'commons-collections:commons-collections:3.2'
+   testCompile 'junit:junit:4.11'
+}
+
+task buildAll() << {}
+
+[ '2.10.4', '2.11.5' ].each { v ->
+  def buildVersion = tasks.create(name: "build_$v", type: GradleBuild) {
+    tasks = [ 'build' ]
+    startParameter.projectProperties = [scalaVersion: v]
+  }
+  buildAll.dependsOn(buildVersion)
+}
