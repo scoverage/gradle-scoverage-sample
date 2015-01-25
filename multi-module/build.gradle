@@ -1,16 +1,15 @@
 buildscript {
   repositories {
-    mavenLocal()
+    mavenCentral()
   }
   dependencies {
-    classpath 'org.scoverage:gradle-scoverage:unspecified'
+    classpath 'org.scoverage:gradle-scoverage:1.0.6'
   }
 }
  
 subprojects {
 
   repositories {
-    mavenLocal()
     mavenCentral()
   }
 
@@ -27,7 +26,7 @@ subprojects {
 
   reportScoverage {
     dependencies {
-      scoverage 'org.scoverage:gradle-scoverage:unspecified'
+      scoverage 'org.scoverage:gradle-scoverage:1.0.6'
     }
   }
 
