@@ -1,0 +1,22 @@
+buildscript {
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath 'org.scoverage:gradle-scoverage:1.0.6'
+   }
+}
+
+apply plugin: 'scala'
+apply plugin: 'scoverage'
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+  scoverage 'org.scoverage:scalac-scoverage-plugin_2.11:1.0.4', 'org.scoverage:scalac-scoverage-runtime_2.11:1.0.4'
+   compile 'org.scala-lang:scala-library:2.11.4'
+   compile 'commons-collections:commons-collections:3.2'
+   testCompile 'junit:junit:4.11'
+}
