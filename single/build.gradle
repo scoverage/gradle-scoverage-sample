@@ -3,7 +3,7 @@ buildscript {
       mavenCentral()
    }
    dependencies {
-      classpath 'org.scoverage:gradle-scoverage:1.0.6'
+      classpath 'org.scoverage:gradle-scoverage:1.0.7'
    }
 }
 

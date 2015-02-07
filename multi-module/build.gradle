@@ -3,7 +3,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.scoverage:gradle-scoverage:1.0.6'
+    classpath 'org.scoverage:gradle-scoverage:1.0.7'
   }
 }
  
@@ -23,12 +23,5 @@ subprojects {
 
     testCompile 'junit:junit:4.11'
   }
-
-  reportScoverage {
-    dependencies {
-      scoverage 'org.scoverage:gradle-scoverage:1.0.6'
-    }
-  }
-
 
 }
