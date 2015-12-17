@@ -1,1 +1,1 @@
-include ':single', ':multi-module', ':separate-tests', ':cross-version'
+include ':single', ':multi-module', ':separate-tests', ':integration-tests', ':cross-version'
