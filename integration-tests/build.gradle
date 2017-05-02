@@ -1,0 +1,42 @@
+description = 'a project with integration tests held in a separate source tree'
+
+apply plugin: 'scala'
+apply plugin: 'org.scoverage'
+
+repositories {
+   mavenCentral()
+}
+
+configurations {
+  integrationCompile.extendsFrom(testCompile)
+  integrationRuntime.extendsFrom(testRuntime)
+}
+
+sourceSets {
+  integration {
+    scala {
+      srcDir 'src/integration/scala'
+    }
+    compileClasspath = sourceSets.test.output + sourceSets.main.output + configurations.integrationCompile
+    runtimeClasspath = output + sourceSets.test.output + sourceSets.main.output + configurations.integrationRuntime
+  }
+}
+
+dependencies {
+   scoverage 'org.scoverage:scalac-scoverage-plugin_2.11:1.0.4', 'org.scoverage:scalac-scoverage-runtime_2.11:1.0.4'
+   compile 'org.scala-lang:scala-library:2.11.4'
+   testCompile 'junit:junit:4.11'
+}
+
+task integration(type: Test, dependsOn: integrationClasses) {
+  testClassesDir = sourceSets.integration.output.classesDir
+  classpath = sourceSets.integration.runtimeClasspath
+}
+
+task integrationScoverage(type: Test, dependsOn: integrationClasses) {
+  testClassesDir = sourceSets.integration.output.classesDir
+  classpath = sourceSets.scoverage.runtimeClasspath + sourceSets.integration.runtimeClasspath
+  reports.html.destination = reporting.file('integration')
+}
+
+[reportScoverage, checkScoverage].each { it.dependsOn(integrationScoverage) }

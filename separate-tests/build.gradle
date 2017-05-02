@@ -1,12 +1,3 @@
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'org.scoverage:gradle-scoverage:1.0.7'
-  }
-}
- 
 subprojects {
 
   repositories {
@@ -14,14 +5,12 @@ subprojects {
   }
 
   apply plugin: 'scala'
-  apply plugin: 'scoverage'
+  apply plugin: 'org.scoverage'
 
   dependencies {
     compile 'org.scala-lang:scala-library:2.11.4'
     scoverage 'org.scoverage:scalac-scoverage-plugin_2.11:1.0.4',
     'org.scoverage:scalac-scoverage-runtime_2.11:1.0.4'
-
-    testCompile 'junit:junit:4.11'
   }
   
   testScoverage {
@@ -37,6 +26,7 @@ subprojects {
 configure(subprojects.findAll { it.name.endsWith('-tests') }) {
   def mainProject = project(":${project.name.minus('-tests')}")
   dependencies {
+    compile 'junit:junit:4.11'
     testCompile mainProject
   }
   scoverage {

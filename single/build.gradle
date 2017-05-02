@@ -1,14 +1,5 @@
-buildscript {
-   repositories {
-      mavenCentral()
-   }
-   dependencies {
-      classpath 'org.scoverage:gradle-scoverage:1.0.7'
-   }
-}
-
 apply plugin: 'scala'
-apply plugin: 'scoverage'
+apply plugin: 'org.scoverage'
 
 repositories {
    mavenCentral()
