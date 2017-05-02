@@ -1,7 +1,7 @@
 description = 'a project with integration tests held in a separate source tree'
 
 apply plugin: 'scala'
-apply plugin: 'scoverage'
+apply plugin: 'org.scoverage'
 
 repositories {
    mavenCentral()

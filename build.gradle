@@ -1,8 +1,8 @@
 buildscript {
-   repositories {
-      mavenCentral()
-   }
-   dependencies {
-      classpath 'org.scoverage:gradle-scoverage:1.0.9'
-   }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.scoverage:gradle-scoverage:2.1.0'
+    }
 }

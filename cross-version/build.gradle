@@ -1,17 +1,8 @@
-buildscript {
-   repositories {
-      mavenCentral()
-   }
-   dependencies {
-      classpath 'org.scoverage:gradle-scoverage:1.0.7'
-   }
-}
-
 // experimental use of an extension to provide version information
 extensions.create('scala', my.ScalaExtension, project)
 
 apply plugin: 'scala'
-apply plugin: 'scoverage'
+apply plugin: 'org.scoverage'
 
 repositories {
    mavenCentral()
@@ -24,7 +15,7 @@ dependencies {
    testCompile 'junit:junit:4.11'
 }
 
-task buildAll() << {}
+task buildAll()
 
 [ '2.10.4', '2.11.5' ].each { v ->
   def buildVersion = tasks.create(name: "build_$v", type: GradleBuild) {
